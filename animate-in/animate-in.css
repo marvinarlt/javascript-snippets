@@ -1,0 +1,13 @@
+/* Animate In default styles */
+.animate-in {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(5rem);
+    transition: 750ms cubic-bezier(0.42, 0, 0.15, 1.4);
+}
+
+.animate-in.animated-in {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+}
