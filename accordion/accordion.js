@@ -14,14 +14,21 @@
  * 
  * Initialise example:
  *  var accordion = new Accordion({
- *      selector: '.myClassName',
- *      animation: false
+ *      selectors: {
+ *          container: '.accordionContainer',
+ *          title: '.accordionTitle',
+ *          content: '.accordionContent'
+ *      },
+ *      activeClass: 'accordionActive',
+ *      animation: true,
+ *      openFirst: false,
+ *      forceOne: true
  *  });
  * 
  * HTML Markup:
- *  <div class="accordion-container">
- *      <span class="accordion-title">Your title ...</span>
- *      <div class="accordion-content">
+ *  <div class="accordionContainer">
+ *      <span class="accordionTitle">Your title ...</span>
+ *      <div class="accordionContent">
  *          Your content ...
  *      </div>
  *  </div>
