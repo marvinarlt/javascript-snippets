@@ -52,12 +52,14 @@ function NeoJ()
         });
     }
 
+    /**
+     * Adds useful classes to the body element
+     */
     this.bodyClass = function ()
     {
         const bodyClass = [];
         const pathname = window.location.pathname;
 
-        // Path class name
         if (pathname == '/') {
             bodyClass.push('index');
         }
@@ -74,7 +76,6 @@ function NeoJ()
         bodyClassString = bodyClassString.replaceAll(',', ' ');
         bodyClassString = bodyClassString.trim();
 
-        // Browser class name
         const browserName = this.getBrowser().name;
         const browser = this.getBrowser().name + this.getBrowser().version;
         bodyClassString += ' ' + this.slugify(browserName) + ' ' + this.slugify(browser);
