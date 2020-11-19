@@ -1,0 +1,168 @@
+$pbBackground: rgba(0, 0, 0, 0.9);
+$pbAltBackground: #000;
+$pbAltColor: #fff;
+$pbButtonBackground: rgba(0, 0, 0, 0.2);
+$pbButtonBackgroundHover: rgba(0, 0, 0, 0.3);
+$pbIconColor: #fff;
+$pbIconThickness: 2px;
+$pbTransition: 200ms ease-out;
+$pbBreakpoint: 640px;
+
+@mixin pbButton {
+  cursor: pointer;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 100%;
+  transition: $pbTransition;
+  background-color: $pbButtonBackground;
+  z-index: 1;
+
+  &:hover {
+    background-color: $pbButtonBackgroundHover;
+  }
+}
+
+.photoboxContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $pbBackground;
+  opacity: 0;
+  visibility: hidden;
+  transition: $pbTransition;
+  z-index: 10;
+
+  .photoboxContent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+
+    .photoboxContentImage {
+      display: block;
+      width: auto;
+      height: auto;
+      max-width: 100vw;
+      max-height: 100vh;
+    }
+
+    .photoboxContentTitle {
+      display: block;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      transform: translateY(100%);
+      width: 100%;
+      padding: 2rem;
+      box-sizing: border-box;
+      color: $pbAltColor;
+      background: linear-gradient(0deg, rgba($pbAltBackground, 0.8) 0%, rgba($pbAltBackground, 0) 100%);
+      line-height: 1.6em;
+      transition: $pbTransition;
+    }
+
+    &:hover {
+      .photoboxContentTitle {
+        transform: translateY(0);
+      }
+    }
+  }
+
+  .photoboxNavigation {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    
+    .photoboxClose {
+      @include pbButton();
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      transform: rotate(45deg);
+
+      @media screen and (min-width: $pbBreakpoint) {
+        top: 2rem;
+        right: 2rem;
+      }
+
+      &::before, &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 1.5rem;
+        height: $pbIconThickness;
+        background-color: $pbIconColor;
+      }
+
+      &::after {
+        width: $pbIconThickness;
+        height: 1.5rem;
+      }
+    }
+
+    .photoboxDirection {
+      @include pbButton();
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 1rem;
+        height: 1rem;
+        border: {
+          bottom: $pbIconThickness solid $pbIconColor;
+          left: $pbIconThickness solid $pbIconColor;
+        }
+      }
+    }
+
+    .photoboxPrevious {
+      position: absolute;
+      bottom: 2rem;
+      left: 1rem;
+      transform: translate(0, -50%);
+
+      @media screen and (min-width: $pbBreakpoint) {
+        bottom: auto;
+        top: 50%;
+        left: 2rem;
+      }
+
+      &::before {
+        transform: translate(-30%, -50%) rotate(45deg);
+      }
+    }
+
+    .photoboxNext {
+      position: absolute;
+      bottom: 2rem;
+      right: 1rem;
+      transform: translate(0, -50%);
+
+      @media screen and (min-width: $pbBreakpoint) {
+        bottom: auto;
+        top: 50%;
+        right: 2rem;
+      }
+
+      &::before {
+        transform: translate(-70%, -50%) rotate(-135deg);
+      }
+    }
+  }
+}
+
+.photoboxVisible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.photoboxImage {
+  cursor: pointer;
+}
